@@ -55,6 +55,7 @@
       </nav>
     </header>
     <main>
+      <p class="notice"><%= h(flash[:notice]) %></p>
       <%= yield %>
     </main>
     <footer>
