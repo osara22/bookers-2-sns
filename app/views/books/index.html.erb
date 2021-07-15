@@ -1,4 +1,14 @@
 <div class="container px-3 px-sm-0">
+  <% if @book.errors.any? %>
+    <div class="error_explanation">
+      <h3><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="row">
     <%= render 'users/user_info', user: @user, book: @book %>
     <%= render 'books/book_list', books: @books %>
