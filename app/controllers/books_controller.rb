@@ -18,7 +18,7 @@ class BooksController < ApplicationController
 
   def index
     @user = current_user
-    @books = Book.all
+    @books = Book.select("books.*", "count(favorites.id) AS favs").left_joins(:favorites).group("books.id").order("favs DESC")
     @book = Book.new
   end
 
