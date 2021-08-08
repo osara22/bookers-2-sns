@@ -18,7 +18,14 @@ class BooksController < ApplicationController
 
   def index
     @user = current_user
-    @books = Book.select("books.*", "count(favorites.id) AS favs").left_joins(:favorites).group("books.id").order("favs DESC")
+    # @books = book.select("books.*", "count(favorites.id) AS favs").left_joins(:favorites).group("books.id").order("favs DESC")
+    to  = Time.current.at_end_of_day
+    from  = (to - 6.day).at_beginning_of_day
+    @books = Book.includes(:favorited_users).
+      sort {|a,b|
+        b.favorited_users.includes(:favorites).where(created_at: from...to).size <=>
+        a.favorited_users.includes(:favorites).where(created_at: from...to).size
+      }
     @book = Book.new
   end
 
