@@ -12,4 +12,7 @@ Rails.application.routes.draw do
     get 'following_user' => 'relationships#following_user', as: 'following_user'
     get 'follower_user' => 'relationships#follower_user', as: 'follower_user'
   end
+  
+  resources :messages, only: [:create]
+  resources :rooms, only: [:create, :show, :index]
 end
