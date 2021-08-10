@@ -34,6 +34,7 @@ class BooksController < ApplicationController
     @book = Book.new
     @book_comment = BookComment.new
     @user = @books.user
+    impressionist(@books, nil, unique: [:request_hash])
   end
 
   def edit

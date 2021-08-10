@@ -70,3 +70,4 @@ gem 'jquery-rails'
 
 gem 'kaminari','~> 1.2.1'
 
+gem 'impressionist', '~>1.6.1'
